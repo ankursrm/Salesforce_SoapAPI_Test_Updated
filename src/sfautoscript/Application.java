@@ -48,7 +48,6 @@ public class Application {
 	static String support_Hours;
 	static String accont_Status;
 //	static String current_date;
-//	just a comment
 	static final String username = "ankuradmin.sharma@databricks.com.bse2";
 	static final String password = "vashistha@1233X4NNZenTOK3B4r8IL3xDYdyU";
 	static EnterpriseConnection connection;

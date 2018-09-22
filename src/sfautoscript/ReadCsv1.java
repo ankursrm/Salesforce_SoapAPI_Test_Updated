@@ -38,6 +38,7 @@ public class ReadCsv1 {
 				break;
 			}
 			// System.out.println(nextLine1[0] + " " + nextLine2[0]);
+//			just a comment
 			if (nextLine1.length != nextLine2.length) {
 				System.out.println("Failed, because of column size missmatch " + nextLine1.length + " " + nextLine2.length
 						+ " at row " + row);

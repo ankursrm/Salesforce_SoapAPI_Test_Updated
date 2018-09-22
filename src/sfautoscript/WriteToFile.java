@@ -37,6 +37,7 @@ public class WriteToFile {
 		} catch (Exception e) 
 		{
 			e.printStackTrace();
+//			just a comment
 		}
 	}
 

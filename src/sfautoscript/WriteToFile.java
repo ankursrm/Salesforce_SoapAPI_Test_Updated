@@ -31,13 +31,14 @@ public class WriteToFile {
 		}
 
 		ReadCsv1 read=new ReadCsv1();
+		
+		
 		try 
 		{
 			read.compare();
 		} catch (Exception e) 
 		{
 			e.printStackTrace();
-//			just a comment
 		}
 	}
 

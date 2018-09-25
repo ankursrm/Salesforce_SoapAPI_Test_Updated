@@ -10,8 +10,8 @@ import au.com.bytecode.opencsv.CSVReader;
 
 public class ReadCsv1 {
 
-	private static final String FILE_PATH1 = "D:\\Salesforce-Zendesk Automation\\Salesforce_Data.csv";
-	private static final String FILE_PATH2 = "C:\\Users\\Ankur Sharma\\Downloads\\zendesk_data_19_09_2018.csv";
+	private static final String FILE_PATH1 = "C:\\Users\\Ankur Sharma\\Downloads\\zendesk_data_19_09_2018.csv";
+	private static final String FILE_PATH2 = "D:\\Salesforce-Zendesk Automation\\Salesforce_Data.csv";
 
 	public void compare() throws Exception
 	{

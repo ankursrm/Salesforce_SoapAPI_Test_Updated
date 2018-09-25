@@ -6,6 +6,7 @@
   <name>Salesforce_SoapAPI_Test_Updated</name>
   <build>
     <sourceDirectory>src</sourceDirectory>
+    <testSourceDirectory>${basedir}/src/com/testCases</testSourceDirectory>
     <plugins>
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>

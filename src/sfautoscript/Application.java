@@ -22,13 +22,13 @@ import com.sforce.ws.ConnectorConfig;
 
 public class Application {
 
-	static String val[] = new String[] { "12345678", "7803506843", "1408088026", "792107403", "1397097646",
+	static String val[] = new String[] {"12345678", "7803506843", "1408088026", "792107403", "1397097646",
 			"48810436", "48406213", "55533143", "7056294526", "6301141826", "3448150763", "1900419383", "34532744",
 			"1409114903", "1245053666", "1434909646", "1433695366", "1321333986", "1409542686", "35517370",
 			"1408360343", "7802855963", "1445070086", "32474350", "299077753", "6641059623", "1435854266", "32322820",
 			"30366070", "1440184326", "3959330786", "6086307746", "7072918123", "2657723006", "1408261066",
 			"1444985063", "7782229566", "1445069286", "48176546", "6645787203", "6951640966", "7072918103", "40555684",
-			"2687594583", "1445198243", "35089994" };
+			"2687594583", "1445198243", "35089994"};
 
 	static Set<String> ZendeskIds = new HashSet<String>();
 	static {
@@ -47,7 +47,7 @@ public class Application {
 	static String cse_Name;
 	static String support_Hours;
 	static String accont_Status;
-//	static String current_date;
+	static String customer_successtier;
 	static final String username = "ankuradmin.sharma@databricks.com.bse2";
 	static final String password = "vashistha@1233X4NNZenTOK3B4r8IL3xDYdyU";
 	static EnterpriseConnection connection;
@@ -92,8 +92,7 @@ public class Application {
 	}
 
 	private static void fetchOpportunities() throws ConnectionException {
-		QueryResult queryresults = connection
-				.query("SELECT Id, AccountId, Account.Name, Account.Zendesk__Zendesk_Organization_Id__c,"
+		QueryResult queryresults = connection.query("SELECT Id, AccountId, Account.Name, Account.Zendesk__Zendesk_Organization_Id__c,"
 						+ " Account.AnnualRevenue, Start_Date__c, End_Date__c,Owner.Name, DB_Users__r.Name, CSE__C,  Type,Account.Customer_Success_Tier__c, "
 						+ "CloseDate FROM Opportunity WHERE stageName = 'Closed Won' "
 						+ "AND ((Type = 'PAYG' AND CloseDate = THIS_MONTH) or "
@@ -273,8 +272,8 @@ public class Application {
 			M += getVal(opline, subscripton, o);
 		}
 
-		WriteToFile file = new WriteToFile();	
-		file.write(M);
+       	WriteToFile file = new WriteToFile();	
+       	file.write(M);
 
 	}
 
@@ -391,6 +390,12 @@ public class Application {
 		} else {
 			cse_Name = "None";
 		}
+		if (o.getAccount().getCustomer_Success_Tier__c() != null) {
+			customer_successtier = o.getAccount().getCustomer_Success_Tier__c();
+		} else {
+			customer_successtier = "None";
+		}
+		
 
 		if (support != null && !support.trim().equals("")) {
 
@@ -440,7 +445,7 @@ public class Application {
 
 		String val = opline != null
 				? ("Total Price:" + opline.getTotalPrice() + "Annual Revenue:" + revenue + "Support Hours:"
-						+ support_Hours + "Account Status:" + accont_Status)
+						+ support_Hours + "Account Status:" + accont_Status + customer_successtier)
 				: "";
 
 		DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSSZ");
@@ -458,11 +463,11 @@ public class Application {
 				+ "Zendesk Id:" + zendesk_id + " " + "Start_Date:" + startDate + " " + "End_Date:" + endDate + " "
 				+ subs + "," + support + "," + "Owener name:" + account_owner + " " + "field engineer:" + field_Engineer
 				+ " " + "CSE NAme:" + cse_Name + " " + "CloseDate:" + o.getCloseDate().getTime() + " "
-				+ "Customer Success Tier:" + val);
+				+  val);
 
 		return o.getAccount().getName() + "," + o.getAccountId() + "," + startDate + "," + endDate + "," + subs + ","
 				+ support + "," + account_owner + "," + field_Engineer + "," + cse_Name + "," + revenue + ","
-				+ support_Hours + "," + accont_Status + "," + "\n";
+				+ support_Hours + "," + accont_Status + "," + customer_successtier + "," + "\n";
 
 	}
 

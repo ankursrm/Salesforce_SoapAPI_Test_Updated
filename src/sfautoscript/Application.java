@@ -66,7 +66,7 @@ public class Application {
 			System.out.println("Username of the User:" + config.getUsername());
 			System.out.println("Session Id:" + config.getSessionId());
 			System.out.println("Connection established successfully");
-			fetchOpportunities(); // method to fetch opportunities from salesforce
+			Application.fetchOpportunities(connection); // method to fetch opportunities from salesforce
 
 		} catch (ConnectionException e1) {
 			e1.printStackTrace();
@@ -91,7 +91,7 @@ public class Application {
 		return list;
 	}
 
-	private static void fetchOpportunities() throws ConnectionException {
+	public static void fetchOpportunities(EnterpriseConnection connection) throws ConnectionException {
 		QueryResult queryresults = connection.query("SELECT Id, AccountId, Account.Name, Account.Zendesk__Zendesk_Organization_Id__c,"
 						+ " Account.AnnualRevenue, Start_Date__c, End_Date__c,Owner.Name, DB_Users__r.Name, CSE__C,  Type,Account.Customer_Success_Tier__c, "
 						+ "CloseDate FROM Opportunity WHERE stageName = 'Closed Won' "
